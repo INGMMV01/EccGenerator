@@ -1,0 +1,39 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Binding", "Binding\Binding.csproj", "{2783B20D-6A90-40DE-8FEA-EB034C75C07D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patterns", "Patterns\Patterns.csproj", "{5443168D-EE86-4A54-BFFE-FFC48FD37FB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinUI", "WinUI\WinUI.csproj", "{8B6E1666-6901-4B46-9509-D8C1BE9FF94A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sql", "Sql\Sql.csproj", "{A67D7821-CBD0-4EDA-A300-4B6D067E13B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2783B20D-6A90-40DE-8FEA-EB034C75C07D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2783B20D-6A90-40DE-8FEA-EB034C75C07D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2783B20D-6A90-40DE-8FEA-EB034C75C07D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2783B20D-6A90-40DE-8FEA-EB034C75C07D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5443168D-EE86-4A54-BFFE-FFC48FD37FB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5443168D-EE86-4A54-BFFE-FFC48FD37FB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5443168D-EE86-4A54-BFFE-FFC48FD37FB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5443168D-EE86-4A54-BFFE-FFC48FD37FB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B6E1666-6901-4B46-9509-D8C1BE9FF94A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B6E1666-6901-4B46-9509-D8C1BE9FF94A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B6E1666-6901-4B46-9509-D8C1BE9FF94A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B6E1666-6901-4B46-9509-D8C1BE9FF94A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A67D7821-CBD0-4EDA-A300-4B6D067E13B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A67D7821-CBD0-4EDA-A300-4B6D067E13B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A67D7821-CBD0-4EDA-A300-4B6D067E13B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A67D7821-CBD0-4EDA-A300-4B6D067E13B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

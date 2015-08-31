@@ -1,0 +1,7 @@
+C:\software\EccGenerator_v2\Sql\bin\Debug\EccGenerator.Sql.dll
+C:\software\EccGenerator_v2\Sql\bin\Debug\EccGenerator.Sql.pdb
+C:\software\EccGenerator_v2\Sql\bin\Debug\EccGenerator.Patterns.dll
+C:\software\EccGenerator_v2\Sql\bin\Debug\EccGenerator.Patterns.pdb
+C:\software\EccGenerator_v2\Sql\obj\Debug\Sql.csprojResolveAssemblyReference.cache
+C:\software\EccGenerator_v2\Sql\obj\Debug\EccGenerator.Sql.dll
+C:\software\EccGenerator_v2\Sql\obj\Debug\EccGenerator.Sql.pdb

@@ -1,0 +1,124 @@
+<pattern>
+	<types>
+		<type name="short" prefix="_int" basetype="Int16" dbtype="SMALLINT"/>
+		<type name="int" prefix="_int" basetype="Int32" dbtype="INT"/>
+		<type name="long" prefix="_int" basetype="Int64" dbtype="BIGINT"/>
+		<type name="string" nonnullable="True" prefix="_str" basetype="String" dbtype="VARCHAR" dbparams="charlength"/>
+		<type name="string" nonnullable="True" prefix="_str" basetype="String" dbtype="TEXT"/>
+		<type name="string" nonnullable="True" prefix="_str" basetype="Char" dbtype="CHAR" dbparams="charlength"/>
+		<type name="DateTime" prefix="_dat" basetype="DateTime" dbtype="DATETIME"/>
+		<type name="decimal" prefix="_dec" params="precision,scale" dbparams="precision,scale" basetype="Decimal" dbtype="DECIMAL"/>
+	</types>
+	<config>
+		<file>\ApplicationCenter\CGAL\CGAL300\Configuration.config</file>
+		<bbdd>RPOS</bbdd>
+	</config>
+	<class>
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+using caixagalicia.CGAL300.Ecc;
+	
+namespace caixagalicia.%aplicacion%.%Name%
+{
+	[ConfiguracionEcc(@"%ConfigFile%", BaseDeDatos = "%BaseDatos%")]
+	public class C%Name%: CEcc
+	{
+		#region Declaraciones
+		
+		%declarations%
+		
+		#endregion
+		
+		#region Constructor
+		
+		public C%Name%()
+		{
+			
+		}
+		
+		#endregion
+		
+		#region Procedimientos Almacenados
+		
+		protected override string QueryRefresh
+		{
+			get { return "%spSelect%"; }
+		}
+		
+		protected override string QueryInsert
+		{
+			get { return "%spInsert%"; }
+		}
+		
+		protected override string QueryUpdate
+		{
+			get { return "%spUpdate%"; }
+		}
+		
+		protected override string QueryDelete
+		{
+			get { return "%spDelete%"; }
+		}
+		
+		#endregion
+		
+		#region Propiedades ECC
+		
+		public override string ClaveObjeto
+		{
+			get { return %claveobjeto%; }
+		}
+		
+		%properties%
+		
+		#endregion
+	}
+}
+	</class>
+	<engine>
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+using caixagalicia.CGAL300.Ecc;
+
+namespace caixagalicia.%aplicacion%.%Name%
+{
+	public class Eng%Name% : EngEcc&lt;C%Name%&gt;
+	{
+		public static ColEcc&lt;C%Name%&gt; ColNueva()
+		{
+			return NuevaColeccion();
+		}
+		
+		public static ColEcc&lt;C%Name%&gt; Obtener%Name%(%params%)
+		{			
+			const string spSelect = "%spselect%";
+			ParametroEngine[] spParameters = new ParametroEngine[%paramnumber%];
+			%paraminit%
+			
+			return ObtenerColeccionECC(spSelect, spParameters);
+		}
+	}
+}
+	</engine>
+	<property>
+		public %propType% %propName%
+		{
+			get { return %fieldPrefix%%fieldName%; }
+			set
+			{
+				base.SetPropiedadECC();
+				%fieldPrefix%%fieldName% = value;
+			}
+		}
+	</property>
+	<declaration>
+		%propType% %fieldPrefix%%fieldName%;
+	</declaration>
+	<instance>
+			%fieldPrefix%%fieldName% = new %propType%(%propTypeParams%);
+	</instance>
+</pattern>

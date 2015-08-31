@@ -1,0 +1,7 @@
+C:\software\EccGenerator_v2\Binding\bin\Debug\EccGenerator.Binding.dll
+C:\software\EccGenerator_v2\Binding\bin\Debug\EccGenerator.Binding.pdb
+C:\software\EccGenerator_v2\Binding\bin\Debug\EccGenerator.Patterns.dll
+C:\software\EccGenerator_v2\Binding\bin\Debug\EccGenerator.Patterns.pdb
+C:\software\EccGenerator_v2\Binding\obj\Debug\Binding.csprojResolveAssemblyReference.cache
+C:\software\EccGenerator_v2\Binding\obj\Debug\EccGenerator.Binding.dll
+C:\software\EccGenerator_v2\Binding\obj\Debug\EccGenerator.Binding.pdb

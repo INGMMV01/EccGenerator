@@ -1,0 +1,4 @@
+C:\software\EccGenerator_v2\Patterns\bin\Debug\EccGenerator.Patterns.dll
+C:\software\EccGenerator_v2\Patterns\bin\Debug\EccGenerator.Patterns.pdb
+C:\software\EccGenerator_v2\Patterns\obj\Debug\EccGenerator.Patterns.dll
+C:\software\EccGenerator_v2\Patterns\obj\Debug\EccGenerator.Patterns.pdb

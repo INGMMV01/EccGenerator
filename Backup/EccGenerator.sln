@@ -1,0 +1,45 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Binding", "Binding\Binding.csproj", "{2783B20D-6A90-40DE-8FEA-EB034C75C07D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Patterns", "Patterns\Patterns.csproj", "{5443168D-EE86-4A54-BFFE-FFC48FD37FB4}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinUI", "WinUI\WinUI.csproj", "{8B6E1666-6901-4B46-9509-D8C1BE9FF94A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sql", "Sql\Sql.csproj", "{A67D7821-CBD0-4EDA-A300-4B6D067E13B2}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{2783B20D-6A90-40DE-8FEA-EB034C75C07D}.Debug.ActiveCfg = Debug|.NET
+		{2783B20D-6A90-40DE-8FEA-EB034C75C07D}.Debug.Build.0 = Debug|.NET
+		{2783B20D-6A90-40DE-8FEA-EB034C75C07D}.Release.ActiveCfg = Release|.NET
+		{2783B20D-6A90-40DE-8FEA-EB034C75C07D}.Release.Build.0 = Release|.NET
+		{5443168D-EE86-4A54-BFFE-FFC48FD37FB4}.Debug.ActiveCfg = Debug|.NET
+		{5443168D-EE86-4A54-BFFE-FFC48FD37FB4}.Debug.Build.0 = Debug|.NET
+		{5443168D-EE86-4A54-BFFE-FFC48FD37FB4}.Release.ActiveCfg = Release|.NET
+		{5443168D-EE86-4A54-BFFE-FFC48FD37FB4}.Release.Build.0 = Release|.NET
+		{8B6E1666-6901-4B46-9509-D8C1BE9FF94A}.Debug.ActiveCfg = Debug|.NET
+		{8B6E1666-6901-4B46-9509-D8C1BE9FF94A}.Debug.Build.0 = Debug|.NET
+		{8B6E1666-6901-4B46-9509-D8C1BE9FF94A}.Release.ActiveCfg = Release|.NET
+		{8B6E1666-6901-4B46-9509-D8C1BE9FF94A}.Release.Build.0 = Release|.NET
+		{A67D7821-CBD0-4EDA-A300-4B6D067E13B2}.Debug.ActiveCfg = Debug|.NET
+		{A67D7821-CBD0-4EDA-A300-4B6D067E13B2}.Debug.Build.0 = Debug|.NET
+		{A67D7821-CBD0-4EDA-A300-4B6D067E13B2}.Release.ActiveCfg = Release|.NET
+		{A67D7821-CBD0-4EDA-A300-4B6D067E13B2}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

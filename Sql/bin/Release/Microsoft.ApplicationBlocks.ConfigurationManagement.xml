@@ -1,0 +1,755 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ApplicationBlocks.ConfigurationManagement</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtection.BCLDataProtection">
+            <summary>
+            Implementation of a Data Provider using the base class library cryptography support
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtection.BCLDataProtection.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtection.BCLDataProtection.Init(System.Collections.Specialized.ListDictionary)">
+            <summary>
+            The initialization method used to get defaults from the configuration file
+            </summary>
+            <param name="dataProtectionParameters"></param>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtection.BCLDataProtection.Encrypt(System.Byte[])">
+            <summary>
+            Encryption method
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtection.BCLDataProtection.Decrypt(System.Byte[])">
+            <summary>
+            Decryption method
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtection.BCLDataProtection.ComputeHash(System.Byte[])">
+            <summary>
+            Compute a hash for an arbitrary string
+            </summary>
+            <param name="plainText">The plain text to hash</param>
+            <returns>The hash to compute</returns>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtection.BCLDataProtection.Dispose">
+            <summary>
+            Close the unmanaged resources
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.ICacheStorage">
+            <summary>
+            This interface must be implemented by cache storage providers
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ICacheStorage.Add(System.String,Microsoft.ApplicationBlocks.ConfigurationManagement.CacheValue)">
+            <summary>
+            Adds an item to the cache
+            </summary>
+            <param name="key">item key</param>
+            <param name="item">item value</param>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ICacheStorage.Get(System.String)">
+            <summary>
+            Gets a item from the cache
+            </summary>
+            <param name="key">item key</param>
+            <returns>item value</returns>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ICacheStorage.ContainsKey(System.String)">
+            <summary>
+            Determines whether the cache contains the specific key
+            </summary>
+            <param name="key">item key</param>
+            <returns>true if the item exist, otherwise false</returns>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ICacheStorage.Clear">
+            <summary>
+            Removes all elements from the cache
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.CacheValue">
+            <summary>
+            The cache value used to hold the cache type
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.MemoryCacheStorage">
+            <summary>
+            This class implements a cache in memory
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.MemoryCacheStorage.Add(System.String,Microsoft.ApplicationBlocks.ConfigurationManagement.CacheValue)">
+            <summary>
+            Adds an item to the cache
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.MemoryCacheStorage.Get(System.String)">
+            <summary>
+            Gets a item from the cache
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.MemoryCacheStorage.ContainsKey(System.String)">
+            <summary>
+            Determines whether the cache contains the specific key
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.MemoryCacheStorage.Clear">
+            <summary>
+            Removes all elements from the cache
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.StorageReaderFactory.ContainsKey(System.String)">
+            <summary>
+            pass-through to underlying collection object's ContainsKey method
+            we never want to give direct access to collection so we must forward this call to protect 
+            the private member's anonymity...and type in case we reoptimize storage later
+            </summary>
+            <param name="key">key whose existence we want to query</param>
+            <returns>boolean true if key exists</returns>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.StorageReaderFactory.ClearCache">
+            <summary>
+            Clears the internal cache of all IConfigurationStorageReader objects
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtectionFactory.Create">
+            <summary>
+            returns protection provider for default section if one exists 
+            otherwise throws exception because dataprotection doesn't exist in default section, or default not defined
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtectionFactory.Create(System.String)">
+            <summary>
+            Creates or loads from internal cache an IDataProtection instance, type-specific to the SectionName passed in
+            </summary>
+            <param name="sectionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtectionFactory.ClearCache">
+            <summary>
+            Clears the internal cache of all DataProtectionFactory
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.CacheFactory.Create(System.String)">
+            <summary>
+            creates or retrieves from internal cache a ConfigurationManagementCache object, which is just an
+            encapsulation of cache settings in the configuration file--such as frequency of refresh, type of cache, location of cache etc.
+            </summary>
+            <param name="sectionName">the name of the config section from which we wish to read cache parameters</param>
+            <returns>ConfigurationManagementCache object which encapsulates cache settings.</returns>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.CacheFactory.ClearCache">
+            <summary>
+            Clears the internal cache of ConfigurationManagementCache objects.  
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagementCache">
+            <summary>
+            This class provides cache services to the Configuration Manager.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagementCache.#ctor(System.String,Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigCacheSettings)">
+            <summary>
+            Constructor allowing the cache configuration to be set.
+            </summary>
+            <param name="sectionName">The section to be cached</param>
+            <param name="cacheSettings">The settings for the cache</param>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagementCache.Add(System.String,System.Object)">
+            <summary>
+            Puts an item in the cache
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagementCache.Get(System.String)">
+            <summary>
+            Gets the item with the specific key
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagementCache.ContainsKey(System.String)">
+            <summary>
+            Determines whether the cache contains the specific key
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagementCache.Clear">
+            <summary>
+            Removes all elements from the cache
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagementCache.ActivateCacheStorage">
+            <summary>
+            Returns a CacheStorage instance
+            </summary>
+            <returns>Instance of a specific CacheStorage implementation.</returns>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagementCache.Item(System.String)">
+            <summary>
+            Class indexer
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagementCache.Refresh">
+            <summary>
+            Absolute time format for refresh of the config data cache. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagementCache.SectionName">
+            <summary>
+            This property specifies the section name associated with this cache
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManager">
+            <summary>
+            The Configuration Manager class manages the configuration information based on settings in the configuration file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManager.Initialize">
+            <summary>
+            Initializes the configuration management support
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManager.Read">
+            <summary>
+            Returns the section defined as the DefaultSection on the configuration
+            file or the first section defined.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManager.Read(System.String)">
+            <summary>
+            Returns a single specified value
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManager.Write(System.Collections.Hashtable)">
+            <summary>
+            Writes the default section (used with the Setting property), to the 
+            storage provider.
+            </summary>
+            <remarks>This method uses the same instance returned by the Setting 
+            property. If the Settings class is modified this method must be 
+            called, otherwise the changes are not saved.</remarks>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManager.Write(System.String,System.Object)">
+            <summary>
+            Writes a single value using the specified section
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManager.IsReadOnly(System.String)">
+            <summary>
+            Determines whether the section is readonly or not
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManager.InitAllProviders">
+            <summary>
+            Method added to initialize all the providers.
+            </summary>
+            
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManager.OnConfigChanges(Microsoft.ApplicationBlocks.ConfigurationManagement.IConfigurationStorageReader,System.String)">
+            <summary>
+            ConfigChanges Event Handler
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManager.Items">
+            <summary>
+            The connection manager singleton instance.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManager.Item(System.String)">
+            <summary>
+            Indexer used to get he hashtable instance when the default section
+            returns a hashtable.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagementSettings">
+            <summary>
+            Class that defines the settings within the configuration management settings in the config file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagementSettings.AddConfigurationSection(Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigSectionSettings)">
+            <summary>
+            Adds a ConfigSectionSettings to the arraylist of sections.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagementSettings.Sections">
+            <summary>
+            An ArrayList containing all of the ConfigSectionSettings listed in the config file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagementSettings.DefaultSectionName">
+            <summary>
+            The section used when the user adds the DefaultSectionName attribute to the
+            applicationConfigurationManagement configuration section.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigCacheSettings">
+            <summary>
+            Class that defines the cache settings within the configuration management settings in the config file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigCacheSettings.IsEnabled">
+            <summary>
+            This property specifies if the cache should be enabled or not.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigCacheSettings.Refresh">
+            <summary>
+            Absolute time format for refresh of the config data cache. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigProviderSettings">
+            <summary>
+            Class that defines the provider settings within the configuration management settings in the config file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigProviderSettings.AddOtherAttributes(System.String,System.String)">
+            <summary>
+            Allows name/value pairs to be added to the Other Attributes collection.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigProviderSettings.AssemblyName">
+            <summary>
+            The assembly name of the configuration provider component that will be used to invoke the object.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigProviderSettings.TypeName">
+            <summary>
+            The type name of the configuration provider component that will be used to invoke the object.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigProviderSettings.OtherAttributes">
+            <summary>
+            An collection of any other attributes included within the provider tag in the config file. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtectionProviderSettings">
+            <summary>
+            Class that defines the protection provider settings within the configuration management settings in the config file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtectionProviderSettings.AddOtherAttributes(System.String,System.String)">
+            <summary>
+            Allows name/value pairs to be added to the Other Attributes collection.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtectionProviderSettings.AssemblyName">
+            <summary>
+            The assembly name of the protection configuration provider component that will be used to invoke the object.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtectionProviderSettings.TypeName">
+            <summary>
+            The type name of the protection provider component that will be used to invoke the object.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtectionProviderSettings.OtherAttributes">
+            <summary>
+            An collection of any other attributes included within the provider tag in the config file. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigSectionSettings">
+            <summary>
+            Class that defines the section settings within the configuration management settings in the config file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigSectionSettings.Cache">
+            <summary>
+            A ConfigCacheSettings configurated in the config file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigSectionSettings.Provider">
+            <summary>
+            A ConfigProviderSettings configurated in the config file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigSectionSettings.DataProtection">
+            <summary>
+            A ProtectionProviderSettings configurated in the config file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigSectionSettings.Name">
+            <summary>
+            This property specifies the section name
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagerSectionHandler">
+            <summary>
+            The Configuration Section Handler for the "configurationManagement" section of the config file. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagerSectionHandler.#ctor">
+            <summary>
+            The constructor for the ConfigurationManagerSectionHandler to initialize the resource file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagerSectionHandler.Create(System.Object,System.Object,System.Xml.XmlNode)">
+            <summary>
+            Builds the ConfigurationManagementSettings, ConfigurationProviderSettings and ConfigurationItemsSettings structures based on the configuration file.
+            </summary>
+            <param name="parent">Composed from the configuration settings in a corresponding parent configuration section.</param>
+            <param name="configContext">Provides access to the virtual path for which the configuration section handler computes configuration values. Normally this parameter is reserved and is null.</param>
+            <param name="section">The XML node that contains the configuration information to be handled. section provides direct access to the XML contents of the configuration section.</param>
+            <returns>The ConfigurationManagementSettings struct built from the configuration settings.</returns>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagerSectionHandler.ProcessConfigSection(System.Xml.XmlNode,Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigSectionSettings@,Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagementSettings)">
+            <summary>
+            Process the "configSection" xml node section
+            </summary>
+            <param name="configChildNode"></param>
+            <param name="sectionSettings"></param>
+            <param name="configSettings"></param>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagerSectionHandler.ProcessConfigCacheSection(System.Xml.XmlNode,Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigCacheSettings@,Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigSectionSettings)">
+            <summary>
+            Process the "configCache" xml node section
+            </summary>
+            <param name="sectionChildNode"></param>
+            <param name="cacheSettings"></param>
+            <param name="sectionSettings"></param>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagerSectionHandler.ProcessConfigProviderSection(System.Xml.XmlNode,Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigProviderSettings@,Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigSectionSettings)">
+            <summary>
+            Process the "configProvider" xml node section
+            </summary>
+            <param name="sectionChildNode"></param>
+            <param name="providerSettings"></param>
+            <param name="sectionSettings"></param>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationManagerSectionHandler.ProcessProtectionProvider(System.Xml.XmlNode,Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtectionProviderSettings@,Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigSectionSettings)">
+            <summary>
+            Process the "protectionProvider" xml node section
+            </summary>
+            <param name="sectionChildNode"></param>
+            <param name="protectionSettings"></param>
+            <param name="sectionSettings"></param>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtection.Store">
+            <summary>
+            The key store used for the DPAPI encryption
+            </summary>
+        </member>
+        <member name="F:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtection.Store.Machine">
+            <summary>
+            Use the machine key to encrypt the data
+            </summary>
+        </member>
+        <member name="F:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtection.Store.User">
+            <summary>
+            Use the user key to encrypt the data
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtection.DPAPIDataProtection">
+            <summary>
+            The DPAPI wrapper
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtection.DPAPIDataProtection.Encrypt(System.Byte[])">
+            <summary>
+            Encrypt the given data
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.DataProtection.DPAPIDataProtection.System#IDisposable#Dispose">
+            <summary>
+            Close the unmanaged resources
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.ExtendedFormat">
+            <summary>
+            This class represents a extended format 
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.ExtendedFormatHelper">
+            <summary>
+            This class tests if a item was expired using a extended format
+            </summary>
+            <remarks>
+            Extended format syntax : <br/><br/>
+            
+            Minute       - 0-59 <br/>
+            Hour         - 0-23 <br/>
+            Day of month - 1-31 <br/>
+            Month        - 1-12 <br/>
+            Day of week  - 0-6 (Sunday is 0) <br/>
+            Wildcards    - * means run every <br/>
+            Examples: <br/>
+            * * * * *    - expires every minute<br/>
+            5 * * * *    - expire 5th minute of every hour <br/>
+            * 21 * * *   - expire every minute of the 21st hour of every day <br/>
+            31 15 * * *  - expire 3:31 PM every day <br/>
+            7 4 * * 6    - expire Saturday 4:07 AM <br/>
+            15 21 4 7 *  - expire 9:15 PM on 4 July <br/>
+            Therefore 6 6 6 6 1 means:
+            •	have we crossed/entered the 6th minute AND
+            •	have we crossed/entered the 6th hour AND 
+            •	have we crossed/entered the 6th day AND
+            •	have we crossed/entered the 6th month AND
+            •	have we crossed/entered A MONDAY?
+            
+            Therefore these cases should exhibit these behaviors:
+            
+            getTime = DateTime.Parse( "02/20/2003 04:06:55 AM" );
+            nowTime = DateTime.Parse( "06/07/2003 07:07:00 AM" );
+            isExpired = ExtendedFormatHelper.IsExtendedExpired( "6 6 6 6 1", getTime, nowTime );
+            TRUE, ALL CROSSED/ENTERED
+            		
+            getTime = DateTime.Parse( "02/20/2003 04:06:55 AM" );
+            nowTime = DateTime.Parse( "06/07/2003 07:07:00 AM" );
+            isExpired = ExtendedFormatHelper.IsExtendedExpired( "6 6 6 6 5", getTime, nowTime );
+            TRUE
+            		
+            getTime = DateTime.Parse( "02/20/2003 04:06:55 AM" );
+            nowTime = DateTime.Parse( "06/06/2003 06:06:00 AM" );
+            isExpired = ExtendedFormatHelper.IsExtendedExpired( "6 6 6 6 *", getTime, nowTime );
+            TRUE
+            
+            		
+            getTime = DateTime.Parse( "06/05/2003 04:06:55 AM" );
+            nowTime = DateTime.Parse( "06/06/2003 06:06:00 AM" );
+            isExpired = ExtendedFormatHelper.IsExtendedExpired( "6 6 6 6 5", getTime, nowTime );
+            TRUE
+            					
+            getTime = DateTime.Parse( "06/05/2003 04:06:55 AM" );
+            nowTime = DateTime.Parse( "06/06/2005 05:06:00 AM" );
+            isExpired = ExtendedFormatHelper.IsExtendedExpired( "6 6 6 6 1", getTime, nowTime );
+            TRUE
+            					
+            getTime = DateTime.Parse( "06/05/2003 04:06:55 AM" );
+            nowTime = DateTime.Parse( "06/06/2003 05:06:00 AM" );
+            isExpired = ExtendedFormatHelper.IsExtendedExpired( "6 6 6 6 1", getTime, nowTime );
+            FALSE:  we did not cross 6th hour, nor did we cross Monday
+            					
+            getTime = DateTime.Parse( "06/05/2003 04:06:55 AM" );
+            nowTime = DateTime.Parse( "06/06/2003 06:06:00 AM" );
+            isExpired = ExtendedFormatHelper.IsExtendedExpired( "6 6 6 6 5", getTime, nowTime );
+            TRUE, we cross/enter Friday
+            
+            
+            getTime = DateTime.Parse( "06/05/2003 04:06:55 AM" );
+            nowTime = DateTime.Parse( "06/06/2003 06:06:00 AM" );
+            isExpired = ExtendedFormatHelper.IsExtendedExpired( "6 6 6 6 1", getTime, nowTime );
+            FALSE:  we don’t cross Monday but all other conditions satisfied
+            </remarks>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.ExtendedFormatHelper.IsExtendedExpired(System.String,System.DateTime,System.DateTime)">
+            <summary>
+            Test the extended format with a given date.
+            </summary>
+            <param name="format">The extended format arguments.</param>
+            <param name="getTime">The time when the item has been refreshed.</param>
+            <param name="nowTime">Always DateTime.Now, or the date to test with.</param>
+            <returns>true if the item was expired, otherwise false</returns>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.GenericFactory">
+            <summary>
+            Acts as the basic implementation for the multiple Factory classes used elsewhere.
+            We need to create instances based on config info ...
+            Have Factories for those, and since there's much common code for doing Reflection-based activation 
+            keep that code in one central place.
+            
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.GenericFactory.SplitType(System.String,System.String@,System.String@)">
+            <summary>
+            Takes incoming full type string, defined as:
+            "Microsoft.ApplicationBlocks.ConfigurationManagement.XmlFileStorage,   Microsoft.ApplicationBlocks.ConfigurationManagement, 
+            		Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+             And splits the type into two strings, the typeName and assemblyName.  Those are passed by as OUT params
+             This routine also cleans up any extra whitespace, and throws an exception if the full type string
+             does not have five comma-delimited parts....it expect the true full name complete with version and publickeytoken
+            </summary>
+            <param name="fullType"></param>
+            <param name="typeName"></param>
+            <param name="assemblyName"></param>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.GenericFactory.Create(System.String)">
+            <summary>
+            Returns an object instantiated by the Activator, using fully-qualified combined assembly-type  supplied.
+            "Microsoft.ApplicationBlocks.ConfigurationManagement.XmlFileStorage,   Microsoft.ApplicationBlocks.ConfigurationManagement, 
+            		Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+            </summary>
+            <param name="fullTypeName">the fully-qualified type name</param>
+            <returns>instance of requested assembly/type typed as System.Object</returns>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.GenericFactory.Create(System.String,System.String)">
+            <summary>
+            Returns an object instantiated by the Activator, using fully-qualified asm/type supplied.
+            Assembly parameter example: "Microsoft.ApplicationBlocks.ConfigurationManagement, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+            Type parameter example: Microsoft.ApplicationBlocks.ConfigurationManagement.XmlFileStorage"
+            </summary>
+            <param name="assemblyName">fully-qualified assembly name</param>
+            <param name="typeName">the type name</param>
+            <returns>instance of requested assembly/type typed as System.Object</returns>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.GenericFactory.Create(System.String,System.String,System.Object[])">
+            <summary>
+            Returns an object instantiated by the Activator, using fully-qualified asm/type supplied.
+            Assembly parameter example: "Microsoft.ApplicationBlocks.ConfigurationManagement, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+            Type parameter example: Microsoft.ApplicationBlocks.ConfigurationManagement.XmlFileStorage"
+            FULL TYPE NAME AS WRITTEN IN CONFIG IS: 
+            "Microsoft.ApplicationBlocks.ConfigurationManagement.XmlFileStorage,   Microsoft.ApplicationBlocks.ConfigurationManagement, 
+            		Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+            </summary>
+            <param name="assemblyName">fully-qualified assembly name</param>
+            <param name="typeName">the type name</param>
+            <param name="constructorArguments">constructor arguments for type to be created</param>
+            <returns>instance of requested assembly/type typed as System.Object</returns>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.Storage.RegistryStorage">
+            <summary>
+            Sample storage provider used to get data from the windows's registry
+            </summary>
+            <remarks>This privider uses the following attributes on the XML file:
+            <list type="">
+            	<item><b>registrySubKey</b>. Used to specify the subkey for a Windows's registry value</item>
+            	<item><b>encrypted</b>. Used to specify if the section must be encrypted </item>
+            	<item><b>signed</b>. Used to specify if the section must be signed </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.Storage.RegistryStorage.Write(System.Xml.XmlNode)">
+            <summary>
+            Writes a section on the XML document
+            </summary>
+        </member>
+        <member name="E:Microsoft.ApplicationBlocks.ConfigurationManagement.Storage.RegistryStorage.ConfigChanges">
+            <summary>
+            Event used internally to know when the storage detect some changes 
+            on the config
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.Resource">
+            <summary>
+            Helper class used to manage application resources
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.Storage.SqlStorage">
+            <summary>
+            Sample SqlServer storage provider used to get data from a database
+            </summary>
+            <remarks>This privider uses the following attributes on the XML file:
+            <list type="">
+            	<item><b>connectionString</b>. Used to specify the connection string for a SqlServer database</item>
+            	<item><b>getConfigSP</b>. The stored procedure used to get the database configuration. This stored procedure must return an XML. This stored procedure must have the following parameters: <c>@sectionName varchar(50)</c></item>
+            	<item><b>setConfigSP</b>. A stored procedure used to save the configuration on the database. This stored prodedure must have the following parameters: <c>@param_section varchar(50), @param_name varchar(50), @param_value varchar(255)</c></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.Storage.SqlStorage.Write(System.Xml.XmlNode)">
+            <summary>
+            Writes a section on the XML document
+            </summary>
+        </member>
+        <member name="E:Microsoft.ApplicationBlocks.ConfigurationManagement.Storage.SqlStorage.ConfigChanges">
+            <summary>
+            Not used.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.Storage.XmlFileStorage">
+            <summary>
+            NOTE only need to implement IConfigurationStorageWriter interface, that interface aggregates Reader AND Writer functionality.
+            If we wished only a Reader, we would implement the lesser IConfigurationStorageReader interface.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.Storage.XmlFileStorage.Init(System.String,System.Collections.Specialized.ListDictionary,Microsoft.ApplicationBlocks.ConfigurationManagement.IDataProtection)">
+            <summary>
+            Inits the provider
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.Storage.XmlFileStorage.Read">
+            <summary>
+            Return a section node
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.Storage.XmlFileStorage.Write(System.Xml.XmlNode)">
+            <summary>
+            Writes a section on the XML document
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.Storage.XmlFileStorage.OnChanged(System.Object,System.IO.FileSystemEventArgs)">
+            <summary>
+            FileSystemWatcher Event Handler
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.Storage.XmlFileStorage.LoadXmlFile(System.Xml.XmlDocument,System.String)">
+            <summary>
+            Loads the Xml file on the document
+            </summary>
+            <param name="doc">An Xml document instance</param>
+            <param name="fileName">The file name</param>
+        </member>
+        <member name="E:Microsoft.ApplicationBlocks.ConfigurationManagement.Storage.XmlFileStorage.ConfigChanges">
+            <summary>
+            Event to indicate a change in the configuration storage
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.XmlHashtableSectionHandler">
+            <summary>
+            A sample section handler which stores a hashtable on the confguration
+            storage.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.XmlSerializableHashtable">
+            <summary>
+            This class is used to provide serialization support for a hashtable
+            Thanks to Christoph, christophdotnet@austin.rr.com, for the xml-serializable hashtable implementation 
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.XmlSerializableHashtable.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.XmlSerializableHashtable.#ctor(System.Collections.Hashtable)">
+            <summary>
+            Creates a serializable hashtable using a hashtable
+            </summary>
+            <param name="ht"></param>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.XmlSerializableHashtable.InnerHashtable">
+            <summary>
+            Returns the contained hashtable
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.XmlSerializableHashtable.Entries">
+            <summary>
+            Used to serilalize the contents of the hashtable
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.XmlSerializableHashtable.Entry">
+            <summary>
+            Represents an entry for the hashtable
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.XmlSerializableHashtable.Entry.#ctor">
+            <summary>
+            Default constructor, needed by serialization support
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.XmlSerializableHashtable.Entry.#ctor(System.Object,System.Object)">
+            <summary>
+            Construct the Entity specifying the key and the entry
+            </summary>
+            <param name="entryKey"></param>
+            <param name="entryValue"></param>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.XmlSerializableHashtable.Entry.EntryKey">
+            <summary>
+            Return the key
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.XmlSerializableHashtable.Entry.EntryValue">
+            <summary>
+            Return the entry value
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.XmlSerializerSectionHandler">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

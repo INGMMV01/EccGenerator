@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ApplicationBlocks.ConfigurationManagement.Interfaces</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.ConfigurationChanged">
+            <summary>
+            Used the specify the configuration have been changed on the storage
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.IConfigurationStorageReader">
+            <summary>
+            Allows end users to implement their own configuration management storage.
+            All storage providers must implement this interface
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.IConfigurationStorageReader.Init(System.String,System.Collections.Specialized.ListDictionary,Microsoft.ApplicationBlocks.ConfigurationManagement.IDataProtection)">
+            <summary>
+            Inits the config provider 
+            </summary>
+            <param name="sectionName"></param>
+            <param name="configStorageParameters">Configuration parameters</param>
+            <param name="dataProtection">Data protection interface.</param>param>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.IConfigurationStorageReader.Read">
+            <summary>
+            Returns an XML representation of the configuration data
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="E:Microsoft.ApplicationBlocks.ConfigurationManagement.IConfigurationStorageReader.ConfigChanges">
+            <summary>
+            Event to indicate a change in the configuration storage
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationBlocks.ConfigurationManagement.IConfigurationStorageReader.Initialized">
+            <summary>
+            Whether the provider has been initialized
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.IConfigurationStorageWriter">
+            <summary>
+            Implemented by configuration providers to allow for writeable storage of configuration 
+            information
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.IConfigurationStorageWriter.Write(System.Xml.XmlNode)">
+            <summary>
+            This method writes the xml-serialized object to the underlying storage 
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.IConfigurationSectionHandlerWriter">
+            <summary>
+            Implemented by custom section handlers in order to allow a writeable implementation
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.IConfigurationSectionHandlerWriter.Serialize(System.Object)">
+            <summary>
+            This method converts the public fields and read/write properties of an object into XML.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.IDataProtection">
+            <summary>
+            Implemented by data protection providers to allow for encrypt information
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.IDataProtection.Init(System.Collections.Specialized.ListDictionary)">
+            <summary>
+            Inits the data protection provider 
+            </summary>
+            <param name="dataProtectionParameters">Data protection parameters</param>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.IDataProtection.Encrypt(System.Byte[])">
+            <summary>
+            Encrypts a raw of bytes that represents a plain text
+            </summary>
+            <param name="plainText">plain text</param>
+            <returns>a cipher value</returns>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.IDataProtection.Decrypt(System.Byte[])">
+            <summary>
+            Decrypts a cipher value
+            </summary>
+            <param name="cipherText">cipher text</param>
+            <returns>a raw of bytes that represents a plain text</returns>
+        </member>
+        <member name="M:Microsoft.ApplicationBlocks.ConfigurationManagement.IDataProtection.ComputeHash(System.Byte[])">
+            <summary>
+            Computes a hash
+            </summary>
+            <param name="plainText">plain text</param>
+            <returns>hash data</returns>
+        </member>
+        <member name="T:Microsoft.ApplicationBlocks.ConfigurationManagement.Product">
+            <summary>
+            Used to set the same version on every project on the solution
+            </summary>
+        </member>
+        <member name="F:Microsoft.ApplicationBlocks.ConfigurationManagement.Product.Version">
+            <summary>
+            The product version
+            </summary>
+        </member>
+        <member name="F:Microsoft.ApplicationBlocks.ConfigurationManagement.Product.Company">
+            <summary>
+            The company name
+            </summary>
+        </member>
+        <member name="F:Microsoft.ApplicationBlocks.ConfigurationManagement.Product.Name">
+            <summary>
+            The project name
+            </summary>
+        </member>
+    </members>
+</doc>

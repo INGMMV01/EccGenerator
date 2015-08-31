@@ -1,0 +1,14 @@
+C:\software\EccGenerator_v2\WinUI\bin\Debug\EccGenerator.WinUI.exe.config
+C:\software\EccGenerator_v2\WinUI\bin\Debug\EccGenerator.WinUI.exe
+C:\software\EccGenerator_v2\WinUI\bin\Debug\EccGenerator.WinUI.pdb
+C:\software\EccGenerator_v2\WinUI\bin\Debug\EccGenerator.Binding.dll
+C:\software\EccGenerator_v2\WinUI\bin\Debug\EccGenerator.Patterns.dll
+C:\software\EccGenerator_v2\WinUI\bin\Debug\EccGenerator.Sql.dll
+C:\software\EccGenerator_v2\WinUI\bin\Debug\EccGenerator.Binding.pdb
+C:\software\EccGenerator_v2\WinUI\bin\Debug\EccGenerator.Patterns.pdb
+C:\software\EccGenerator_v2\WinUI\bin\Debug\EccGenerator.Sql.pdb
+C:\software\EccGenerator_v2\WinUI\obj\Debug\WinUI.csprojResolveAssemblyReference.cache
+C:\software\EccGenerator_v2\WinUI\obj\Debug\EccGenerator.UI.Windows.MainForm.resources
+C:\software\EccGenerator_v2\WinUI\obj\Debug\WinUI.csproj.GenerateResource.Cache
+C:\software\EccGenerator_v2\WinUI\obj\Debug\EccGenerator.WinUI.exe
+C:\software\EccGenerator_v2\WinUI\obj\Debug\EccGenerator.WinUI.pdb
